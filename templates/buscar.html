@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center my-4">Resultados de Búsqueda</h1>
+    {% if resultados %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for barrio in resultados %}
+                <tr>
+                    <td>{{ barrio.nombre }}</td>
+                    <td>{{ barrio.latitud }}</td>
+                    <td>{{ barrio.longitud }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-center">No se encontraron resultados para "{{ query }}".</p>
+    {% endif %}
+</div>
+{% endblock %}

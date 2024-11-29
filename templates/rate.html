@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="text-center">Calificar Barrios</h1>
+<form action="/rate" method="POST" class="mb-4">
+    <div class="mb-3">
+        <label for="barrio_id" class="form-label">Seleccionar Barrio</label>
+        <select id="barrio_id" name="barrio_id" class="form-select" required>
+            {% for barrio in barrios %}
+            <option value="{{ barrio.id }}">{{ barrio.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="nivel_peligrosidad" class="form-label">Nivel de Peligrosidad (1-5)</label>
+        <input type="number" id="nivel_peligrosidad" name="nivel_peligrosidad" class="form-control" min="1" max="5" required>
+    </div>
+    <div class="mb-3">
+        <label for="comentario" class="form-label">Comentario</label>
+        <textarea id="comentario" name="comentario" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Enviar Calificación</button>
+</form>
+{% endblock %}

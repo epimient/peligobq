@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1 class="text-center my-4">Inicio - Vista General</h1>
+
+    <div class="row">
+        <!-- Tarjeta del Mapa -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-primary text-white">Mapa de Barrios</div>
+                <div class="card-body p-0" style="height: 400px; overflow-y: auto;">
+                    <!-- Renderizar el mapa de Folium -->
+                    {{ mapa_html|safe }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de la Tabla -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">Barrios Registrados</div>
+                <div class="card-body p-0" style="height: 400px; overflow-y: auto;">
+                    <table class="table table-striped m-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Latitud</th>
+                                <th>Longitud</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for barrio in barrios %}
+                            <tr>
+                                <td>{{ barrio.nombre }}</td>
+                                <td>{{ barrio.latitud }}</td>
+                                <td>{{ barrio.longitud }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="text-center">Análisis de Sentimientos</h1>
+
+<!-- Gráfico de Torta -->
+<h2 class="text-center my-4">Distribución de Sentimientos</h2>
+<div class="text-center">
+    <img src="data:image/png;base64,{{ img_torta }}" alt="Gráfico de Torta" class="img-fluid">
+</div>
+
+<!-- Línea de Tiempo -->
+{% if img_linea %}
+<h2 class="text-center my-4">Sentimientos a lo Largo del Tiempo</h2>
+<div class="text-center">
+    <img src="data:image/png;base64,{{ img_linea }}" alt="Línea de Tiempo" class="img-fluid">
+</div>
+{% else %}
+<h2 class="text-center my-4">No hay datos suficientes para la Línea de Tiempo</h2>
+{% endif %}
+
+<!-- Comentarios Extremos -->
+<h2 class="text-center my-4">Comentarios Extremos</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-success text-white">Comentario Más Positivo</div>
+            <div class="card-body">
+                <p><strong>Comentario:</strong> {{ comentario_positivo['comentario'] }}</p>
+                <p><strong>Sentimiento:</strong> {{ comentario_positivo['sentimiento'] }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-danger text-white">Comentario Más Negativo</div>
+            <div class="card-body">
+                <p><strong>Comentario:</strong> {{ comentario_negativo['comentario'] }}</p>
+                <p><strong>Sentimiento:</strong> {{ comentario_negativo['sentimiento'] }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
